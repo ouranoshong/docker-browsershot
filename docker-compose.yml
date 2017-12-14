@@ -1,7 +1,28 @@
 version: '2'
 
 services:
-  browsershot:
-    build: ./browsershot
+  applications:
+    image: tianon/true
     volumes:
-      - './data/browsershot:/app'
+      - '${APPLICATION}:/app'
+  browsershot:
+    build: "./browsershot"
+    volumes_from:
+      - applications
+    networks:
+      - backend
+  nginx:
+    build: "./nginx"
+    ports:
+        - "${HTTP_PORT}:80"
+        - "${HTTPS_PORT}:443"
+    volumes_from:
+      - applications
+    links:
+      - browsershot
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: "bridge"
