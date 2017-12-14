@@ -3,13 +3,13 @@ FROM 'ouranoshong/browsershot'
 LABEL name="ouranoshong@outlook.com"
 
 RUN apt-get update -y \
-    && apt-get install -y php7.0-dev php-pear \
+    && apt-get install -y php7.1-dev php-pear \
     && pecl install swoole \
-    && apt-get autoremove -y php7.0-dev php-pear \
+    && apt-get autoremove -y php7.1-dev php-pear \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-COPY ./swoole.ini /etc/php/7.0/cli/conf.d/20-swoole.ini
+COPY ./swoole.ini /etc/php/7.1/cli/conf.d/20-swoole.ini
 
 RUN apt-get update -y \
     && apt-get install -y supervisor \
