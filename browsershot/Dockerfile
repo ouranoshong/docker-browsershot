@@ -1,4 +1,4 @@
-FROM 'ouranoshong/browsershot'
+FROM ouranoshong/browsershot
 
 LABEL name="ouranoshong@outlook.com"
 
